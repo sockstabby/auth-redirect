@@ -1,0 +1,52 @@
+{
+  "folders": [
+    {
+      "name": "redirectUser",
+      "path": "/Users/ericpeterson/lambda/redirectUser"
+    }
+  ],
+  "launch": {
+    "configurations": [
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "redirectUser:HelloWorldFunction (nodejs14.x)",
+        "invokeTarget": {
+          "target": "template",
+          "templatePath": "${workspaceFolder}/redirectUser/template.yaml",
+          "logicalId": "HelloWorldFunction"
+        },
+        "lambda": {
+          "payload": {
+            "json": {
+              "queryStringParameters": {
+                "code": "fd5704fa-9d84-4624-be8a-58d67348e021"
+              }
+            }
+          },
+          "environmentVariables": {}
+        }
+      },
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "API redirectUser:HelloWorldFunction (nodejs14.x)",
+        "invokeTarget": {
+          "target": "api",
+          "templatePath": "${workspaceFolder}/redirectUser/template.yaml",
+          "logicalId": "HelloWorldFunction"
+        },
+        "api": {
+          "path": "/hello",
+          "httpMethod": "get",
+          "payload": {
+            "json": {}
+          }
+        },
+        "lambda": {
+          "runtime": "nodejs14.x"
+        }
+      }
+    ]
+  }
+}
